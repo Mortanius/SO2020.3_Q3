@@ -48,7 +48,6 @@ public class Bananeira implements Runnable {
     public void loop() throws InterruptedException {
         System.out.println("Iniciando threads dos macacos");
         for (Macaco m : macacos) {
-            m.setPriority(Thread.MIN_PRIORITY);
             m.start();
         }
 
@@ -87,15 +86,7 @@ public class Bananeira implements Runnable {
             e.printStackTrace();
         }
     }
-/*
-    public void mudarPrioridade(Macaco m) {
-        long tempoSemComer = m.getTempoSemComer();
-        double percentualFome = (double) tempoSemComer / TEMPO_MAXIMO_SEM_COMER;
-        int novaPrioridade = Thread.MIN_PRIORITY + (int) Math.ceil(percentualFome * (Thread.MAX_PRIORITY - Thread.MIN_PRIORITY));
-        System.out.printf("Mudando prioridade do macaco %d de %d para %d (tempo sem comer: %d, percentual de fome: %f)\n", m.getIdMacaco(), m.getPriority(), novaPrioridade, tempoSemComer, percentualFome);
-        m.setPriority(novaPrioridade);
-    }
-*/
+
     public void adicionarMacacoEmEspera(Macaco m) {
         macacosEmEspera.add(m);
         controleMacacosEsperando.drainPermits();
